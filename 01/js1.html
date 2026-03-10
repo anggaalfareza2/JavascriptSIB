@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS PERTEMUAN 1</title>
+
+</head>
+<body>
+    <script> //tahap awal kita harus membuat script yang nantinya berfungsi untuk memasukan" code javascript
+
+        let panjang = 10; // disini kita mendeklarasikan variabel menggunakan let yang artinya nilai dapat berubah sewaktu waktu
+        let lebar = 20;
+        let luasPersegiPanjang = panjang * lebar ; // disinilah rumus ditulis disini saya menggunakan * atau per kalian
+        document.write(       // selanjutnya documen view disini untuk menampilkan / menulis teks langsung ke halaman html
+        "Luas Persegi Panjang = Panjang x Lebar" + "<br>" + "<br>" +
+        "Panjang = " + panjang + "<br>" +
+        "Lebar =" + lebar +
+        "<br> Luas =" + luasPersegiPanjang +
+        "<hr>" 
+        );
+
+        var sisi = 15; // selain menggunakan let kita juga bisa menggunakan var, var merupakan deklarasi variabel lama
+        var luasPersegi = sisi ** 2 ; // disini saya menggunakan ** 2 yg artinya adalah pangkat 2
+        document.write(     // pada document view jika ingin memanggil hasilnya cukup dengan menulis variabel nya tanpa menggunakan kutip
+        "Luas Persegi = Sisi x Sisi" + "<br>" + "<br>" +
+        "Sisi = " + sisi + "<br>" +
+        "Luas = " + luasPersegi +
+        "<hr>"
+        );
+
+        let alas = 5 ;
+        let tinggi = 10 ;
+        const luasSegitiga= 0.5 * alas * tinggi; // kita juga bisa menggunakan const jika variabel nya konstanta atau nilai nya tidak akan berubah (tetap)
+        document.write(
+        "Luas Segitiga = 1/2 x Alas x Tinggi" + "<br>" + "<br>" +
+        "Alas = " + alas + "<br>" +
+        "Tinggi" + tinggi + "<br>" +
+        "Luas = " + luasSegitiga
+        )
+
+
+   
+    </script>
+
+
+</body>
+</html>
