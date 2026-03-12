@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let Nama = "angga";
+        let harga = 100000;
+        let keterangan = " ";
+        if (harga >=10000) {
+           keterangan = "selamat" + Nama ;
+        } 
+        else if (harga >= 5000) {
+            keterangan = "tambah lagi";
+        }
+        else {
+            keterangan = "trims";
+        }
+        document.write(keterangan);
+
+        // doc write pisah dengan tak pisah
+
+        let nama1 = " udin ";
+        let harga1 = 15000 ;
+        let keterangan1 = "";
+        if (harga1 <= 10000) {
+           document.write("selamat" + nama1);
+        } else {
+            document.write("ok" + nama1);
+        }
+
+        document.write(keterangan1);
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       let nama = "angga";
+        let harga = 5000 ;
+        let diskon = 0 ;
+        let totalDiskon = 0 ;
+        let total = harga;
+        let keterangan = ""
+        if (harga >= 10000) {
+            diskon = harga * 0.5 ;
+            total = harga - diskon ;
+            totalDiskon = "50%";
+        } 
+        else if ( harga >=5000 ) {
+            diskon = harga * 0.3 ;
+            total = harga - diskon ;
+            totalDiskon = "30%";
+       }
+        else  {
+            keterangan = "Terimakasih"
+        }
+
+        document.write("hallo   " + nama + "<br>");
+         document.write("Harga awal =" + harga + "<br>");
+          document.write("Diskon diperoleh =" + totalDiskon + "<br>");
+           document.write("Total Harga =" + total);
+           document.write(keterangan);
+    </script>
+    
+</body>
+</html>
