@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen Produk Toko</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        th, td { border: 1px solid black; padding: 5px; }
+        th { background-color: #ddd; }
+        input { margin: 5px; }
+    </style>
+</head>
+<body>
+    <h2>MANAJEMEN PRODUK TOKO</h2>
+    
+    <div>
+        <h3>Tambah Produk Baru</h3>
+        <input type="text" id="namaProduk" placeholder="Nama Produk">
+        <input type="number" id="hargaProduk" placeholder="Harga">
+        <input type="number" id="stokProduk" placeholder="Stok">
+        <button onclick="tambahDariForm()">Tambah Produk</button>
+    </div>
+
+    <div id="output"></div>
+
+    <script>
+        // 1. ARRAY PRODUK AWAL
+        let produkToko = [
+            { id: 1, nama: "Laptop", harga: 7000000, stok: 5 },
+            { id: 2, nama: "Mouse", harga: 200000, stok: 10 },
+            { id: 3, nama: "Keyboard", harga: 350000, stok: 7 }
+        ];
+
+        // 2. FUNGSI TAMBAH PRODUK
+        function tambahProduk(nama, harga, stok) {
+            if (!nama || harga <= 0 || stok < 0) {
+                alert("Data tidak valid!");
+                return;
+            }
+
+            let idBaru = 1;
+            if (produkToko.length > 0) {
+                idBaru = produkToko[produkToko.length - 1].id + 1;
+            }
+
+            let produkBaru = {
+                id: idBaru,
+                nama: nama,
+                harga: harga,
+                stok: stok
+            };
+
+            produkToko.push(produkBaru);
+            alert(`Produk "${nama}" berhasil ditambahkan`);
+            tampilkanProduk();
+        }
+
+        // 3. FUNGSI HAPUS PRODUK
+        function hapusProduk(id) {
+            let indexHapus = -1;
+            for (let i = 0; i < produkToko.length; i++) {
+                if (produkToko[i].id === id) {
+                    indexHapus = i;
+                    break;
+                }
+            }
+
+            if (indexHapus !== -1) {
+                let namaProduk = produkToko[indexHapus].nama;
+                let konfirmasi = confirm(`Hapus produk "${namaProduk}"?`);
+                
+                if (konfirmasi) {
+                    produkToko.splice(indexHapus, 1);
+                    alert(`Produk dihapus`);
+                    tampilkanProduk();
+                }
+            } else {
+                alert(`Produk dengan ID ${id} tidak ditemukan`);
+            }
+        }
+
+        // 4. FUNGSI TAMPILKAN PRODUK
+        function tampilkanProduk() {
+            let outputDiv = document.getElementById("output");
+            
+            if (produkToko.length === 0) {
+                outputDiv.innerHTML = "<p>Tidak ada produk.</p>";
+                return;
+            }
+
+            let totalSemua = 0;
+
+            let tabel = "<h3>DAFTAR PRODUK</h3>";
+            tabel += "<table>";
+            
+            // THEAD
+            tabel += "<thead><tr>";
+            tabel += "<th>ID</th><th>Nama</th><th>Harga</th><th>Stok</th><th>Total</th><th>Aksi</th>";
+            tabel += "</tr></thead>";
+            
+            // TBODY
+            tabel += "<tbody>";
+            for (let i = 0; i < produkToko.length; i++) {
+                let p = produkToko[i];
+                let totalNilai = p.harga * p.stok;
+                totalSemua += totalNilai;
+                
+                tabel += "<tr>";
+                tabel += `<td>${p.id}</td>`;
+                tabel += `<td>${p.nama}</td>`;
+                tabel += `<td>Rp ${p.harga}</td>`;
+                tabel += `<td>${p.stok}</td>`;
+                tabel += `<td>Rp ${totalNilai}</td>`;
+                tabel += `<td><button onclick="hapusProduk(${p.id})">Hapus</button></td>`;
+                tabel += "</tr>";
+            }
+            tabel += "</tbody>";
+            
+            // TFOOT
+            tabel += "<tfoot><tr>";
+            tabel += `<td colspan="4"><strong>Total Semua</strong></td>`;
+            tabel += `<td colspan="2"><strong>Rp ${totalSemua}</strong></td>`;
+            tabel += "</tr></tfoot>";
+            
+            tabel += "</table>";
+            
+            outputDiv.innerHTML = tabel;
+        }
+
+        // Fungsi untuk mengambil dari form
+        function tambahDariForm() {
+            let nama = document.getElementById("namaProduk").value;
+            let harga = Number(document.getElementById("hargaProduk").value);
+            let stok = Number(document.getElementById("stokProduk").value);
+            
+            tambahProduk(nama, harga, stok);
+            
+            document.getElementById("namaProduk").value = "";
+            document.getElementById("hargaProduk").value = "";
+            document.getElementById("stokProduk").value = "";
+        }
+
+        // Tampilan produk saat pertama buka
+        window.onload = tampilkanProduk;
+    </script>
+</body>
+</html>
