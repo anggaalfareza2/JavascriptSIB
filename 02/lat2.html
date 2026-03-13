@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* Cetak Data Pegawai berbentuk tabel: 
+         Judul Kolom gunakan thead 
+         Isi data-datanya gunakan tbody  
+         Nama Pegawai, Umur, Jabatan, Status,
+         Gaji Pokok(if): Manajer=>15 jt, Asisten Manajer=>10 jt, Staff=>5 jt  
+         Tunjangan Jabatan: 15% dari gapok 
+         BPJS: 10% dari gapok 
+         Tunjangan Keluarga (ternary): dilihat dari status yg sudah menikah =>20% dari gapok 
+         Total Gaji: jumlahlahkan seluruh element gaji (gunakan tfoot) */
+
+      let nama = "budi";
+      let umur = 29;
+      let jabatan = "manajer";
+      let status = "menikah";
+      let gapok = 0;
+
+      switch (jabatan) {
+        case "manajer":
+          gapok = 15000000;
+          break;
+        case "asisten manajer":
+          gapok = 10000000;
+          break;
+        case "staff":
+          gapok = 5000000;
+          break;
+        default:
+            gapok = 0 ;
+          break;
+      }
+
+      let tunjangan = gapok * 0.15;
+      let bpjs = gapok * 0.1;
+      let tunjangaKeluarga = status == "menikah" ? gapok * 0.2 : 0;
+      let totalGaji = gapok + tunjangan + bpjs + tunjangaKeluarga;
+
+      document.write("<table border='1'>");
+
+      document.write("<thead>");
+      document.write("<tr>");
+      document.write("<th> Nama ");
+      document.write("<th> umur");
+      document.write("<th> jabatan");
+      document.write("<th> status ");
+      document.write("<th> Gaji Pokok :");
+      document.write("<th> Tunjangan :");
+      document.write("<th> Tunjangan Keluarga :");
+
+      document.write("<tbody>");
+      document.write("<tr>");
+      document.write("<th>" + nama);
+      document.write("<th>" + umur);
+      document.write("<th>" + jabatan);
+      document.write("<th>" + status);
+        document.write("<th>" + gapok);
+            document.write("<th>" + tunjangan);
+                document.write("<th>" + tunjangaKeluarga);
+
+    
+      document.write("<tr>");
+      document.write("<th> Total Gaji :");
+      document.write("<th colspan='7'>" + totalGaji);
+    </script>
+  </body>
+</html>

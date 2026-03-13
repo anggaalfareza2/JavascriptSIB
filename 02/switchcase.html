@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //ada pelanggan membeli barang elektronik
+      //barang: tv=>3jt, motor=>12jt, kulkas=>4jt
+      //tentukan pembelian barangnya dan berapa barang yang dibeli
+      //tambahkan proses diskon dari setiap barang
+      //lalu cetak hasil pembelian barang dan totalanya
+
+        let nama = "angga";
+        let barang = "motor";
+        let jumlah = 3;
+        let harga = 0;
+        switch (barang) {
+            case "motor":
+                harga = 12000000;
+                break;
+            case "tv":
+                harga = 3000000;
+                break;
+            case "kulkas":
+                harga = 4000000;
+                break;
+            default:
+                harga = "tidak valid";
+                break;
+        }
+        let persendiskon = 0;
+        if (barang) {
+            if (barang == "tv") {
+                persendiskon = 10;
+            } else if (barang == "motor") {
+                persendiskon = 20;
+            } else if (barang == "kulkas") {
+                persendiskon = 15;
+            }
+        } else {
+            persendiskon = 0;
+        }
+
+        let diskon = harga * persendiskon / 100;
+        let subtotal = jumlah * harga;
+        let total = subtotal - diskon;
+        document.write("Nama : " + nama + "<br>");
+        document.write("Barang : " + barang + "<br>");  
+        document.write("Jumlah : " + jumlah + "<br>");
+        document.write("Harga : " + harga + "<br>");
+        document.write("Diskon : " + persendiskon + "%<br>");
+        document.write("Total : " + total);
+    </script>
+  </body>
+</html>

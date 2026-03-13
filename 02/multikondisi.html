@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let nama = "Angga";
+        let juara = 4;
+        let lomba = "ipa";
+        let hadiah = 0;
+        let keterangan =""
+
+        if (juara == 1) {
+            if (lomba == "mtk") {
+                hadiah = 10000;
+                keterangan = "selamat"
+            }else if (lomba == "ipa") {
+                hadiah = 6000;
+                keterangan = "selamat"
+            } else {
+                 hadiah = 0;
+                keterangan = "Maaf, lomba " + lomba + " tidak tersedia untuk juara 1";
+            }
+        } 
+
+          else if (juara == 2) {
+            if (lomba == "mtk") {
+                hadiah = 8000;
+                keterangan = "selamat"
+            }else if (lomba == "ipa") {
+                hadiah = 6000;
+                keterangan = "selamat"
+            }  else {
+                 hadiah = 0;
+                keterangan = "Maaf, lomba " + lomba + " tidak tersedia untuk juara 1";
+            }
+        } 
+
+          else if (juara == 3) {
+            if (lomba == "mtk") {
+                hadiah = 6000;
+                keterangan = "selamat"
+            }else if (lomba == "ipa") {
+                hadiah = 4000;
+                keterangan = "selamat"
+            }  else {
+                 hadiah = 0;
+                keterangan = "Maaf, lomba " + lomba + " tidak tersedia untuk juara 1";
+            }
+        } 
+
+        else{
+             hadiah <= 3;
+            
+        }
+
+        document.write(
+            "nama :" + nama +
+            "<br> juara :" + juara +
+            "<br> lomba :" + lomba +
+            "<br> hadiah :" + hadiah +
+            "<br><br><strong>" + keterangan + "</strong>"
+        )
+        
+    </script>
+</body>
+</html>
