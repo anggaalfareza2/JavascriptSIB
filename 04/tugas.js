@@ -1,0 +1,67 @@
+class Kendaraan {
+    constructor(merk, warna, platNomor) {
+        this.merk = merk;
+        this.warna = warna;
+        this.platNomor = platNomor;
+    }
+    info() {
+        return `${this.merk} (${this.warna}) - ${this.platNomor}`;
+    }
+}
+
+class Mobil extends Kendaraan {
+    constructor(merk, warna, platNomor) {
+        super(merk, warna, platNomor);
+    }
+    info() {
+        return `Mobil ${super.info()}`;
+    }
+}
+
+class Motor extends Kendaraan {
+    constructor(merk, warna, platNomor) {
+        super(merk, warna, platNomor);
+    }
+    info() {
+        return `Motor ${super.info()}`;
+    }
+}
+
+class Pelanggan {
+    constructor(nama, nomorTelepon, kendaraanDisewa) {
+        this.nama = nama;
+        this.nomorTelepon = nomorTelepon;
+        this.kendaraanDisewa = kendaraanDisewa;
+    }
+    catatTransaksi(kendaraan) {
+        this.kendaraanDisewa = kendaraan;
+    }
+    info() {
+        let kendaraan = this.kendaraanDisewa ? this.kendaraanDisewa.info() : "Tidak ada";
+        return { nama: this.nama, telepon: this.nomorTelepon, kendaraan: kendaraan };
+    }
+}
+
+let mobil1 = new Mobil("Toyota", "Merah", "B 1234 CD");
+let mobil2 = new Mobil("Honda", "Hitam", "B 5678 EF");
+let motor1 = new Motor("Yamaha", "Biru", "B 9101 GH");
+
+let pelanggan1 = new Pelanggan("Budi", "08123456789", mobil1);
+let pelanggan2 = new Pelanggan("Ani", "08129876543", motor1);
+let pelanggan3 = new Pelanggan("Citra", "08125556677", null);
+
+pelanggan3.catatTransaksi(mobil2);
+
+let daftarPelanggan = [pelanggan1, pelanggan2, pelanggan3];
+
+console.log("=== DAFTAR PELANGGAN SEWA KENDARAAN ===\n");
+
+for (let i = 0; i < daftarPelanggan.length; i++) {
+    let p = daftarPelanggan[i].info();
+    console.log(`${i+1}. Nama    : ${p.nama}`);
+    console.log(`   Telepon : ${p.telepon}`);
+    console.log(`   Kendaraan : ${p.kendaraan}`);
+    console.log("-----------------------------------");
+}
+
+console.log(`\nTotal Pelanggan: ${daftarPelanggan.length}`);
