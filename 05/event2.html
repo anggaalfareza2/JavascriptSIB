@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Tugas -->
+     <button id="myButton1">Hi</button>
+     <p id="paragraph">anjay mabar</p>
+    
+    <div id="parent" style="padding: 20px;">
+        parent div
+        <div id="child" style="padding: 10px">
+        Child Div (CLick Me)
+        </div>
+
+    </div>
+    <button id="myButton">klik</button>
+    <!-- prevent default  -->
+    <a href="https://www.google.com" id="myLink">Klik Link</a>
+</body>
+<script>
+    //mengubah teks
+    document.getElementById("paragraph").addEventListener("click", function (event) {
+        let pesan = document.getElementById("paragraph");
+        pesan.innerHTML = "Teks sudah berubah";
+    })
+    document.getElementById("myButton1").addEventListener("click", function () {
+        alert("Hi, Selamat Datang");
+    });
+
+    document.getElementById("parent").addEventListener("click", function (){
+        alert("Event juga terjadi di Parent");
+    });
+    document.getElementById("child").addEventListener("click", function(event){
+        event.stopPropagation();
+        alert("Hanya elemen ini yang di klik");
+    });
+
+    
+    document.getElementById("myButton").addEventListener("click", function (event) {
+        console.log("Event Type: ", event.type);
+        console.log("Element Target: ", event.target);
+    })
+
+    // prevent default
+    document.getElementById("myLink").addEventListener("click", function (event){
+        event.preventDefault();
+        alert("Tautan Tidak Diarahkan");
+    })
+</script>
+</html>

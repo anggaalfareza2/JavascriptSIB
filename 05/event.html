@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="myButton">Klik DOM </button>
+    <!-- mengubah warna -->
+     <button id="changeColor">Klik Button</button>
+
+     <button id="warnaMerah">Merah</button>
+     <button id="warnaKuning">Kuning</button>
+     <button id="warnaHijau">Hijau</button>
+
+     <button id="gantiGambar">Gambar</button>
+</body>
+<script>
+    let buttonGambar = document.getElementById("gantiGambar");
+    buttonGambar.addEventListener("click", function(){
+        let image = document.createElement("img");
+        image.src = "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg";
+        document.body.appendChild(image);
+    });
+
+    let buttonMerah = document.getElementById("warnaMerah");
+    buttonMerah.addEventListener("click", function(){
+        document.body.style.backgroundColor = "DarkRed";
+    });
+    let buttonKuning = document.getElementById("warnaKuning");
+    buttonKuning.addEventListener("click", function(){
+        document.body.style.backgroundColor = "yellow";
+    });
+    let buttonHijau = document.getElementById("warnaHijau");
+    buttonHijau.addEventListener("click", function(){
+        document.body.style.backgroundColor = "green";
+    });
+
+
+    let button = document.getElementById('myButton');
+    button.addEventListener("click", function(){
+        alert("Tombol DI Klik");
+    });
+
+    button.addEventListener("click", function(){
+        console.log("Event Dijalankan");
+    });
+    let buttonWarna = document.getElementById("changeColor");
+    buttonWarna.addEventListener("click", function(){
+        document.body.style.backgroundColor = "blue";
+    });
+
+</script>
+</html>

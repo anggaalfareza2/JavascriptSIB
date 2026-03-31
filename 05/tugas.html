@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen Produk</title>
+</head>
+<body>
+    <h2>Manajemen Produk</h2>
+    
+    <div>
+        <h3>Tambah Produk</h3>
+        <input type="text" id="namaProduk" placeholder="Nama Produk">
+        <input type="number" id="hargaProduk" placeholder="Harga">
+        <button id="btnTambah">Tambah Produk</button>
+    </div>
+
+    <div>
+        <h3>Hapus Produk</h3>
+        <input type="number" id="idHapus" placeholder="ID Produk">
+        <button id="btnHapus">Hapus Produk</button>
+    </div>
+
+    <div id="output"></div>
+
+    <script>
+        let produkList = [
+            { id: 1, nama: "Laptop", harga: 12000000 },
+            { id: 2, nama: "Smartphone", harga: 5000000 },
+            { id: 3, nama: "Tablet", harga: 7000000 },
+            { id: 4, nama: "Mouse", harga: 200000 },
+            { id: 5, nama: "Keyboard", harga: 350000 }
+        ];
+
+        function tambahProduk(nama, harga) {
+            let idBaru = produkList.length > 0 ? produkList[produkList.length - 1].id + 1 : 1;
+            let produkBaru = { id: idBaru, nama: nama, harga: harga };
+            produkList = [...produkList, produkBaru];
+            alert(`Produk "${nama}" berhasil ditambahkan dengan ID ${idBaru}`);
+            tampilkanProduk();
+        }
+
+        function hapusProduk(...id) {
+            let idHapus = id[0];
+            let produkDihapus = produkList.find(p => p.id === idHapus);
+            if (produkDihapus) {
+                produkList = produkList.filter(produk => produk.id !== idHapus);
+                alert(`Produk "${produkDihapus.nama}" berhasil dihapus`);
+            } else {
+                alert(`Produk dengan ID ${idHapus} tidak ditemukan`);
+            }
+            tampilkanProduk();
+        }
+
+        function tampilkanProduk() {
+            let outputDiv = document.getElementById("output");
+            
+            if (produkList.length === 0) {
+                outputDiv.innerHTML = "<p>Tidak ada produk.</p>";
+                return;
+            }
+
+            let tabel = "<h3>Daftar Produk</h3>";
+            tabel += "<table border='1' cellpadding='5'>";
+            tabel += "<thead><tr><th>ID</th><th>Nama</th><th>Harga</th></tr></thead>";
+            tabel += "<tbody>";
+            
+            for (let i = 0; i < produkList.length; i++) {
+                let { id, nama, harga } = produkList[i];
+                tabel += `<tr><td>${id}</td><td>${nama}</td><td>Rp ${harga.toLocaleString()}</td></tr>`;
+            }
+            
+            tabel += "</tbody>";
+            tabel += "<tfoot><tr><td colspan='3'>Total Produk: " + produkList.length + "</td></tr></tfoot>";
+            tabel += "</table>";
+            
+            outputDiv.innerHTML = tabel;
+        }
+
+        document.getElementById("btnTambah").addEventListener("click", function() {
+            let nama = document.getElementById("namaProduk").value;
+            let harga = Number(document.getElementById("hargaProduk").value);
+            
+            if (!nama || harga <= 0) {
+                alert("Nama dan harga harus diisi dengan benar!");
+                return;
+            }
+            
+            tambahProduk(nama, harga);
+            
+            document.getElementById("namaProduk").value = "";
+            document.getElementById("hargaProduk").value = "";
+        });
+
+        document.getElementById("btnHapus").addEventListener("click", function() {
+            let id = Number(document.getElementById("idHapus").value);
+            
+            if (!id) {
+                alert("Masukkan ID produk yang akan dihapus!");
+                return;
+            }
+            
+            hapusProduk(id);
+            
+            document.getElementById("idHapus").value = "";
+        });
+
+        tampilkanProduk();
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="judul">Selamat Datang</h1>
+    <button = onclick="ubahteks()">Ubah Teks</button>
+    <br>
+    <h1 id="warna">Hallo</h1>
+    <button = onclick="ubahwarna()">Ubah Warna</button>
+    <br>
+    <br>
+
+    <div id="container">
+        <p id="paragraph">Ini adalah Paragraph</p>
+    </div>
+
+    <button onclick="tambahElemen()">Tambah Paragraf</button>
+    <button onclick="hapusElemen()">Hapus Paragraf</button>
+</body>
+<script>
+    function ubahteks() {
+        document.getElementById("judul").innerText = "Teks Berubah";
+    }
+    function ubahwarna() {
+        document.getElementById("warna").style.color = "blue";
+    }
+
+    function tambahElemen() {
+        let paragraphBaru = document.createElement("p");
+        paragraphBaru.innerText = "Paragraph Baru Ditambah";
+        document.getElementById("container").appendChild(paragraphBaru);
+    }
+
+    function hapusElemen() {
+        let container = document.getElementById("container");
+        if (container.lastChild) {
+            container.removeChild(container.lastChild);
+        } else {
+            alert("Tidak ada elemen yang bisa dihapus!");
+        }
+    }
+</script>
+</html>
