@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen User</title>
+</head>
+<body>
+    <h1>Manajemen Data User</h1>
+
+    <div>
+        <h3>Tambah User Baru</h3>
+        <form id="formUser">
+            <input type="text" id="nama" placeholder="Nama" required>
+            <input type="number" id="umur" placeholder="Umur" required>
+            <input type="text" id="alamat" placeholder="Alamat" required>
+            <button type="submit">Tambah User</button>
+        </form>
+    </div>
+
+    <div>
+        <h3>Hapus User</h3>
+        <form id="formHapus">
+            <input type="text" id="namaHapus" placeholder="Nama User yang akan dihapus" required>
+            <button type="submit">Hapus User</button>
+        </form>
+    </div>
+
+    <div>
+        <h3>Daftar User</h3>
+        <div id="daftarUser"></div>
+    </div>
+
+    <script type="module">
+        import { index, store, destroy } from './controller.js';
+
+        function renderUser() {
+            const users = index();
+            const daftarUserDiv = document.getElementById('daftarUser');
+            
+            if (users.length === 0) {
+                daftarUserDiv.innerHTML = '<p>Tidak ada user.</p>';
+                return;
+            }
+            
+            let tabel = '<table border="1" cellpadding="8" cellspacing="0">';
+            tabel += '<thead>';
+            tabel += '<tr>';
+            tabel += '<th>No</th>';
+            tabel += '<th>Nama</th>';
+            tabel += '<th>Umur</th>';
+            tabel += '<th>Alamat</th>';
+            tabel += '</tr>';
+            tabel += '</thead>';
+            tabel += '<tbody>';
+            
+            users.forEach(user => {
+                tabel += '<tr>';
+                tabel += `<td>${user.id}</td>`;
+                tabel += `<td>${user.nama}</td>`;
+                tabel += `<td>${user.umur}</td>`;
+                tabel += `<td>${user.alamat}</td>`;
+                tabel += '</tr>';
+            });
+            
+            tabel += '</tbody>';
+            tabel += '</table>';
+            
+            daftarUserDiv.innerHTML = tabel;
+        }
+
+        document.getElementById('formUser').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const nama = document.getElementById('nama').value;
+            const umur = parseInt(document.getElementById('umur').value);
+            const alamat = document.getElementById('alamat').value;
+            
+            if (nama && umur && alamat) {
+                store({ nama, umur, alamat });
+                renderUser();
+                
+                document.getElementById('nama').value = '';
+                document.getElementById('umur').value = '';
+                document.getElementById('alamat').value = '';
+                
+                alert(`User "${nama}" berhasil ditambahkan!`);
+            }
+        });
+
+        document.getElementById('formHapus').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const nama = document.getElementById('namaHapus').value;
+            
+            if (nama) {
+                const hasil = destroy(nama);
+                if (hasil) {
+                    renderUser();
+                    alert(`User "${nama}" berhasil dihapus!`);
+                } else {
+                    alert(`User dengan nama "${nama}" tidak ditemukan!`);
+                }
+                
+                document.getElementById('namaHapus').value = '';
+            }
+        });
+
+        renderUser();
+    </script>
+</body>
+</html>

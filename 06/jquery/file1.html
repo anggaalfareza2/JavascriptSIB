@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-4.0.0.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <h2 id="judul">contoh jquery</h2>
+    <button id="ubah">Ubah</button>
+
+    <button id="warna">ubah warna</button>
+
+    <div style="border: 5px solid black" id="border">
+      <button id="hide">hide</button>
+    </div>
+
+    <div id="show">
+      <button id="buttonShow">show</button>
+    </div>
+
+    <div>
+      <h2 id="judulParagraph">Judul</h2>
+      <p class="text">pargraph pertama</p>
+      <p class="text">paragraph kedua</p>
+      <button id="buttonParagraph">Ubah Paragraph</button>
+    </div>
+
+    <h3>abcd</h3>
+    <h2>as</h2>
+
+    <script>
+      $(function () {
+        $("#buttonParagraph").click(function () {
+          $("#judulParagraph").css("color", "blue"); //pemanggilan menggunakan selector id
+          $(".text").css("font-weight", "bold"); //pemanggilan menggunakan selector class
+          $("div,h3").css('background-color','red');//pemanggilan menggunakan selector tag
+        });
+      });
+
+      $("#hide").click(function () {
+        $("#border").hide();
+      });
+
+      $("#buttonShow").click(function () {
+        $("#show").css("border", "solid", "black");
+      });
+
+      $(document).ready(function () {
+        $("#ubah").click(function () {
+          $("#judul").html("<b>Judul Baru</b>");
+        });
+      });
+
+      $(document).ready(function () {
+        $("#warna").click(function () {
+          $("body").css("background-color", "yellow");
+        });
+      });
+    </script>
+  </body>
+</html>

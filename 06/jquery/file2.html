@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+      <script src="https://code.jquery.com/jquery-4.0.0.js"></script>
+</head>
+<body>
+    <a href="https://google.com" target="_blank">google</a>
+    <a href="http://example.com" target="_self">Example</a>
+
+    <button id="ubah">Highlight Link Https</button>
+
+    <script>
+        $(function(){
+            $('#ubah').click(function(){
+                $("a[href*=https").css("color","green");
+            })
+        })
+    </script>
+</body>
+</html>
